@@ -3,7 +3,7 @@ const logger = require('koa-logger')
 const bodyParser = require('koa-bodyparser')
 const cors = require('@koa/cors')
 const { host, port } = require('./config')
-const cookie = require('./middlewares/cookieMiddleware')
+const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const router = require('./routes')
 
 const app = new Koa()
@@ -19,7 +19,7 @@ const corsOptions = {
 app.use(logger())
 app.use(cors(corsOptions))
 app.use(bodyParser())
-app.use(cookie)
+app.use(cookieMiddleware)
 app.use(router.routes(), router.allowedMethods())
 
 app.listen(port, console.log(`server is start at ${host}:${port}`))
