@@ -1,16 +1,17 @@
+const path = require('path')
 const Koa = require('koa')
 const logger = require('koa-logger')
 const bodyParser = require('koa-bodyparser')
 const cors = require('@koa/cors')
 const { host, port } = require('./config')
-const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const router = require('./routes')
+const mockMiddleware = require('./middlewares/mock')
 
 const app = new Koa()
 const corsOptions = {
   'Access-Control-Allow-Origin': 'localhost',
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  allowMethods: ['OPTIONS', 'GET' , 'POST'],
+  allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE', 'HEAD'],
   exposeHeaders: [],
   maxAge: 300,
   credentials: true
@@ -19,7 +20,7 @@ const corsOptions = {
 app.use(logger())
 app.use(cors(corsOptions))
 app.use(bodyParser())
-app.use(cookieMiddleware)
+app.use(mockMiddleware(path.join(__dirname, '/mock')))
 app.use(router.routes(), router.allowedMethods())
 
 app.listen(port, console.log(`server is start at ${host}:${port}`))

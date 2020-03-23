@@ -7,12 +7,18 @@
     "start": "nodemon ./app/index.js"
   },
   "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/register": "^7.8.6",
     "@koa/cors": "^2.2.3",
     "axios": "^0.18.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "glob": "^7.1.6",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
-    "nodemon": "^1.18.7"
+    "mockjs": "^1.1.0",
+    "nodemon": "^1.18.7",
+    "path-to-regexp": "^6.1.0"
   }
 }
